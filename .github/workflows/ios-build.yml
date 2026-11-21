@@ -1,0 +1,43 @@
+name: iOS Build & Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Xcode-Version anzeigen
+        run: xcodebuild -version
+
+      - name: Prüfen, ob schon ein Xcode-Projekt existiert
+        id: check
+        run: |
+          if ls *.xcodeproj >/dev/null 2>&1; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+            echo "Noch kein Xcode-Projekt vorhanden – Build wird übersprungen."
+          fi
+
+      - name: Simulator wählen
+        if: steps.check.outputs.exists == 'true'
+        id: sim
+        run: |
+          SIM=$(xcrun simctl list devices available | grep -m1 -oE 'iPhone [0-9]+[^(]*' | sed 's/ *$//')
+          echo "Gewählter Simulator: $SIM"
+          echo "name=$SIM" >> "$GITHUB_OUTPUT"
+
+      - name: Bauen und testen
+        if: steps.check.outputs.exists == 'true'
+        run: |
+          xcodebuild \
+            -scheme Laufbuch \
+            -destination "platform=iOS Simulator,name=${{ steps.sim.outputs.name }}" \
+            CODE_SIGNING_ALLOWED=NO \
+            build test
