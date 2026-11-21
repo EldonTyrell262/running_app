@@ -16,7 +16,7 @@ Den vollständigen Anforderungskatalog findest du in [`docs/PROMPT.md`](docs/PRO
 
 ## Voraussetzungen
 
-- Ein Mac mit aktuellem Xcode. Welche Version nötig ist, hängt von der iOS-Version auf dem iPhone ab.
+- Ein Mac mit Xcode. Hier ist das ein Mac mini Late 2012 mit macOS Sequoia über den OpenCore Legacy Patcher und Xcode 26.3. Die Einrichtung steht in [`docs/MAC-SETUP.md`](docs/MAC-SETUP.md).
 - Ein iPhone 11 oder neuer
 - Ein Apple-Konto. Mit dem kostenlosen Konto muss die App alle 7 Tage neu aufgespielt werden. Das Apple Developer Program (99 €/Jahr) hebt diese Grenze auf und ermöglicht TestFlight.
 

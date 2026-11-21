@@ -23,6 +23,13 @@ Laufbuch ist eine native iPhone-App zum Aufzeichnen täglicher Läufe (5–10 km
 - SwiftData, Swift Charts, MapKit, CoreLocation, CoreMotion (`CMAltimeter`, `CMPedometer`), AVFoundation, HealthKit
 - Die Rechenlogik (Distanz, Splits, Pace, Auto-Pause) ist UI-frei und mit Unit-Tests abgedeckt.
 
+## Entwicklungsumgebung
+
+- **Mac:** Mac mini Late 2012 (Intel, 8 GB RAM, SSD) mit **macOS Sequoia über OpenCore Legacy Patcher**. Einrichtung: `docs/MAC-SETUP.md`
+- **Xcode 26.3**, die letzte Version für Sequoia. Sie bringt das **iOS-26.2-SDK** mit, also keine APIs verwenden, die erst ab iOS 26.3 kommen.
+- Der Mac ist langsam: Builds schlank halten, unnötige Clean-Builds vermeiden, im Simulator ein kleines iPhone-Modell nutzen.
+- Zusätzlich baut und testet GitHub Actions (`.github/workflows/ios-build.yml`) jeden Push auf einem aktuellen macOS-Runner.
+
 ## Build-Befehle
 
 ```bash
@@ -42,4 +49,4 @@ Laufbuch ist eine native iPhone-App zum Aufzeichnen täglicher Läufe (5–10 km
 
 ## Stand
 
-Das Projekt ist angelegt, es gibt noch keinen Code. Nächster Schritt: Plan für Phase 1.
+Das Projekt ist angelegt, es gibt noch keinen Code. Der Entwicklungs-Mac wird gerade eingerichtet (Catalina → OCLP → Sequoia → Xcode 26.3). Nächster Schritt danach: Plan für Phase 1.
